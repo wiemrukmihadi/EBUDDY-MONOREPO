@@ -5,7 +5,7 @@ import { User } from "@ebuddy/shared";
 
 export const fetchUserData = async (req: Request, res: Response) => {
   const pageSize = parseInt(req.query.pageSize as string) || 1;
-  const query = await db.collection("USERS").limit(pageSize);
+  const query = await db.collection("USERS");
   const snapshot = await query.get();
   const users: User[] = snapshot.docs.map((doc) => doc.data() as User);
   const rankedUsers = users
